@@ -68,8 +68,6 @@ if __name__ == '__main__':
     # numpy.sum(a, axis=None)是numpy的函数
     # 按照给定的轴(第二个参数axis)计算数组(第一个参数a)的和
     # axis默认为None,简单对所有数值相加; axis=0表示按列相加; axis=1表示按行相加
-    # 本例中np.sum传入的第一个参数km.cluster_centers_是聚类中心的二维数组
-    # np.sum返回的结果expenses是按行计算后
     CityCluster = [[], [], [], []]
     for i in range(len(cityName)):
         CityCluster[label[i]].append(cityName[i])  # 将城市按 label 分成设定的簇
