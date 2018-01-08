@@ -9,7 +9,7 @@
 #
 共包含15个主题和相关项目
 
-1. k-means聚类
+1. k-means聚类 (biteduML\studynotes\kmeans-city已完成)
 2. DBSCAN
 3. 降维PCA-鸢尾花
 4. kmeans图像分割
