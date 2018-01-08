@@ -68,9 +68,19 @@ if __name__ == '__main__':
     # numpy.sum(a, axis=None)是numpy的函数
     # 按照给定的轴(第二个参数axis)计算数组(第一个参数a)的和
     # axis默认为None,简单对所有数值相加; axis=0表示按列相加; axis=1表示按行相加
-    CityCluster = [[], [], [], []]
+    # 最终返回结果的类型是ndarray
+    CityCluster = [[], [], [], []]  # 定义有4个元素的列表
+    # 4与之前指定聚类中心的个数相同
+    # 每个元素本身又是一个空列表,稍后用来存储城市名称
     for i in range(len(cityName)):
         CityCluster[label[i]].append(cityName[i])  # 将城市按 label 分成设定的簇
+        # label[i]得到一个整数,作为CityCluster的下标
+        # CityCluster[label[i]]得到CityCluster中的第label[i]个元素
+        # 因为CityCluster中的第label[i]个元素也是列表,所以使用append方法添加元素
+        # CityCluster[label[i]].append(cityName[i])就是向列表CityCluster[label[i]]中添加cityName[i]
     for i in range(len(CityCluster)):
         print("Expenses:%.2f" % expenses[i])  # 将每个簇的平均花费输出
+        # "Expenses:%.2f"中的%.2f是python的格式符，表示将浮点数float保留两位小数
+        # "Expenses:%.2f" % expenses[i]完整意思:
+        # 将引号外百分号%后的expenses[i]保留两位小数后填入引号内%.2f的位置
         print(CityCluster[i])  # 将每个簇的城市输出
