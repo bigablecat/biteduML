@@ -1,7 +1,5 @@
 import numpy as np  # 导入numpy包
 from sklearn.cluster import KMeans  # 导入KMeans包
-import os
-
 
 # 定义一个读取数据的方法loadData(filePath),传入参数filePah为数据源文件在计算机中的路径
 def loadData(filePath):
