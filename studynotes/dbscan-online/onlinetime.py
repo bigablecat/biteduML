@@ -29,7 +29,7 @@ for line in f:  # 解析返回结果f,读取每行数据line,line的类型是str
     # [8]本科生动态IP模版,
     # [9]100元每半年,
     # [10]internet
-    # 其中mac地址为该字符串列表的第3个元素,用下标2获取
+    # 其中mac地址为该字符串列表的第3个元素,用下标2获取,举例如A417314EEA7B
 
     onlinetime = int(line.split(',')[6])  # 上网时长onlinetime是该列表的第5个元素,用下标6获取,加int()转换为整数
 
@@ -50,9 +50,23 @@ for line in f:  # 解析返回结果f,读取每行数据line,line的类型是str
 
     if mac not in mac2id:  #
         mac2id[mac] = len(onlinetimes)
+        # 字典变量mac2id的key为mac地址,value为列表onlinetimes的长度
+        # 相当于用mac2id[mac]记录onlinetimes的最大索引
         onlinetimes.append((starttime, onlinetime))
+        # (starttime, onlinetime)是一个元组类型的对象，存储最新获取的starttime和onlinetime两个元素
+        # 向列表onlinetimes添加当前元组对象
+        print(onlinetimes)
     else:
-        onlinetimes[mac2id[mac]] = [(starttime, onlinetime)]
+        # onlinetimes[mac2id[mac]] = [(starttime, onlinetime)] # 课件中的原始代码
+        onlinetimes[mac2id[mac]] = (starttime, onlinetime)  # 修正后的代码
+        # (starttime, onlinetime)同上,仍然生成一个元组，存储最新获取的starttime和onlinetime两个元素
+        # 上面讲到,mac2id[mac]实际是列表onlinetimes的一个索引值
+        # onlinetimes[mac2id[mac]]获取onlinetimes中索引值为[mac2id[mac]]的一个元素
+        # 用最新的元组(starttime, onlinetime)替换原有元素
+        # 原始代码勘误:
+        # if中用append添加了一个元组,else中用等号赋值,等号右边应该也是同样格式的元组
+        # 所以去除原始代码中的中括号才是正确代码
+
 real_X = np.array(onlinetimes).reshape((-1, 2))
 # np.array(onlinetimes) 通过列表onlinetimes生成一个ndarray多维数组
 # reshape() 不改变数组元素，返回一个shape形状的数组，原数组不变
