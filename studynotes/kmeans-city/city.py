@@ -1,5 +1,8 @@
+# 本文件对应原始课件\biteduML\raw_materials\05.py
+
 import numpy as np  # 导入numpy包
 from sklearn.cluster import KMeans  # 导入KMeans包
+
 
 # 定义一个读取数据的方法loadData(filePath),传入参数filePah为数据源文件在计算机中的路径
 def loadData(filePath):
@@ -78,7 +81,29 @@ if __name__ == '__main__':
         # CityCluster[label[i]].append(cityName[i])就是向列表CityCluster[label[i]]中添加cityName[i]
     for i in range(len(CityCluster)):
         print("Expenses:%.2f" % expenses[i])  # 将每个簇的平均花费输出
-        # "Expenses:%.2f"中的%.2f是python的格式符，表示将浮点数float保留两位小数
-        # "Expenses:%.2f" % expenses[i]完整意思:
-        # 将引号外百分号%后的expenses[i]保留两位小数后填入引号内%.2f的位置
+        # python对字符串操作时定义了%二进制操作符
+        # %左侧是一个字符串，这个字符串里也有1个或多个百分号%,相当于占位符，是要嵌入的转换目标
+        # %右侧是用来插入到左侧转换目标位置上去的对象，如果是多个对象，把多个对象嵌入到元组中
+        # 嵌入一个对象的例子：
+        # 'The sum of 1 + 2 is %d ' % 3  # %d 表示十进制整数
+        # 打印结果是 The sum of 1 + 2 is 3
+        # 嵌入多个对象的例子：
+        # 'The %s of 1 + is %d ' % ('sum', 3)  # %s表示字符串(或任何对象)，%d 表示十进制整数
+        # 打印结果是 The sum of 1 + 2 is 3
+        # 这里因为要分别嵌入'sum'和3两个对象,所以将这两个对象嵌入到元组中('sum', 3)
+        # python字符串格式化有非常多的用法，细节可参照《Python学习手册》第七章192页到207页
+        # 接下来只针对本段代码中的使用进行解释
+        # "Expenses:%.2f" % expenses[i]
+        # 中间的百分号%将表达式分为左右两部分
+        # 百分号%左侧是字符串 "Expenses:%.2f"
+        # %.f表示浮点十进制,"Expenses:%.2f"中的%.2f表示浮点十进制保留2位小数
+        # 百分号%右侧是对象expenses[i]
+        # "Expenses:%.2f" % expenses[i]完整含义:
+        # 将expenses[i]嵌入到%.2f的位置,转换为浮点十进制并保留2位小数
         print(CityCluster[i])  # 将每个簇的城市输出
+
+# 参考书目：
+# 《Python学习手册》，作者Mark Lutz，译者李军，刘红伟等
+# 《Python编程快速上手——让繁琐工作自动化》,作者Al Sweigart, 译者王海鹏
+# 《利用Python进行数据分析》,作者Wes McKinney,译者唐学韬
+# 注释中的一些描述，直接从书中摘取了原句
