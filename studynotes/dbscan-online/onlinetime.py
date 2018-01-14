@@ -9,11 +9,11 @@ mac2id = dict()  # 创建一个字典变量
 onlinetimes = []  # 创建一个列表
 f = open('TestData.txt', encoding='utf-8')  # 使用读取数据
 # open()函数打开一个文件
-# 第一个参数是文件的路径,格式是字符串
-# 路径可以是相对路径,也可以是绝对路径
-# 在windows下用\\分割路径,在OSX下用/分割
-# encoding在原函数的参数列表中不是第二个参数，所以传入参数时注明了参数名称encoding=
-# encoding='utf-8'表示以utf-8字符集读取文件
+# • 第一个参数是文件的路径,格式是字符串
+# • 路径可以是相对路径,也可以是绝对路径
+# • 在windows下用\\分割路径,在OSX下用/分割
+# • encoding在原函数的参数列表中不是第二个参数，所以传入参数时注明了参数名称encoding=
+# • encoding='utf-8'表示以utf-8字符集读取文件
 # open()函数返回的结果的类型是_io.TextIOWrapper
 
 for line in f:  # 解析返回结果f,读取每行数据line,line的类型是str字符串
@@ -37,15 +37,15 @@ for line in f:  # 解析返回结果f,读取每行数据line,line的类型是str
 
     starttime = int(line.split(',')[4].split(' ')[1].split(':')[0])  # 开始上网时间的整点数
     # starttime的获取经过了3次切片
-    # 第一次切片：line.split(',')[4]
+    # • 第一次切片：line.split(',')[4]
     # 对整行按逗号切片后,得到第一个列表,上网时间是该列表的第5个元素,用下标[4]获取
     # 获取到的上网时间是一个字符串,格式如 2014-07-20 22:44:18.540000000
-    # 第二次切片：line.split(',')[4].split(' ')[1]
+    # • 第二次切片：line.split(',')[4].split(' ')[1]
     # 用' '空格对上网时间字符串进行切片，再次得到一个字符串列表
     # 这个新列表的第一个元素是开始上网时间的年月日(例如2014-07-20)
     # 新列表的第二个元素是开始上网时间的时分秒(例如22:44:18.540000000)
     # 用下标[1]获取第二个元素
-    # 第三次切片：line.split(',')[4].split(' ')[1].split(':')[0]
+    # • 第三次切片：line.split(',')[4].split(' ')[1].split(':')[0]
     # 对上网时间的时分秒按冒号切片,获得一个包含时、分、秒三个字符串元素的列表
     # 用下标[0]获取小时的字符串
     # 最终结果用int()转换为整数
@@ -124,19 +124,20 @@ db = skc.DBSCAN(eps=0.01, min_samples=20).fit(X)
 # class sklearn.cluster.DBSCAN (eps=0.5, min_samples=5, metric='euclidean',
 # metric_params=None, algorithm='auto', leaf_size=30, p=None, n_jobs=1)
 # 这里只介绍前3个常用参数,其他参数可以查看sklearn.cluster.DBSCAN的官方文档
-# eps：两个样本被看作近邻的最大距离，超出这个距离不算近邻
-# min_samples：近邻的最少样本数，达到这个数量某个点才能被认为是核心点(包括这个点自身)
-# metric='euclidean': 距离计算方式，DBSCAN使用默认的欧式距离可以满足大部分需求
+# • eps：两个样本被看作近邻的最大距离，超出这个距离不算近邻
+# • min_samples：近邻的最少样本数，达到这个数量某个点才能被认为是核心点(包括这个点自身)
+# • metric='euclidean': 距离计算方式，DBSCAN使用默认的欧式距离可以满足大部分需求
 
-# eps默认值是0.5
-# eps过大，则更多的点会落在核心点的邻域内
-# 此时类别数可能会减少，本来不应该是一类的样本也会被划为一类
-# 反之eps过小则类别数可能会增大，本来是一类的样本却被划分开
+# eps
+# • eps默认值是0.5
+# • eps过大，则更多的点会落在核心点的邻域内, 此时类别数可能会减少，本来不应该是一类的样本也会被划为一类
+# • 反之eps过小则类别数可能会增大，本来是一类的样本却被划分开
 
-# min_samples默认值是5
-# 在eps一定的情况下
-# min_samples过大，则核心点会过少, 此时簇内部分本来是一类的样本可能会被标为噪音点，类别数也会变多
-# 反之min_samples过小，则会产生大量的核心点，可能会导致类别数过少
+# min_samples
+# • min_samples默认值是5
+# • 在eps一定的情况下
+# • min_samples过大，则核心点会过少, 此时簇内部分本来是一类的样本可能会被标为噪音点，类别数也会变多
+# • 反之min_samples过小，则会产生大量的核心点，可能会导致类别数过少
 
 # eps和min_samples常在一起调参，两个值的组合最终影响了聚类效果
 
@@ -150,9 +151,9 @@ db = skc.DBSCAN(eps=0.01, min_samples=20).fit(X)
 # g) 马氏距离'mahalanobis'
 
 # skc.DBSCAN(eps=0.01, min_samples=20) 本行代码经过了如下计算流程：
-# 对每个点都计算在半径eps=0.01范围内，邻域有多少个点
-# 如果集合内点的个数超过min_samples=20个时，这个点是核心点
-# 查看剩余点是否在核心点的邻域内，若在则为边界点，否则为噪声点
+# • 以每个点为中心，计算在这个中心的半径eps=0.01范围内，共有多少个点(包括中心点自己),即邻域内总共有多少个点
+# • 如果邻域内点的个数超过min_samples=20，这个点是核心点
+# • 查看剩余点是否在核心点的邻域内，若在则为边界点，否则为噪声点
 
 labels = db.labels_
 # Cluster labels for each point in the dataset given to fit(). Noisy samples are given the label -1.
@@ -174,9 +175,9 @@ for i in range(n_clusters_):
 plt.hist(X, 24)
 
 # 参考书目和文章：
-# 《Python编程快速上手——让繁琐工作自动化》,作者Al Sweigart, 译者王海鹏
-# 《利用Python进行数据分析》,作者Wes McKinney,译者唐学韬
-# 《用scikit-learn学习DBSCAN聚类》(https://www.cnblogs.com/pinard/p/6217852.html)
-# 《DBSCAN - 基于密度的聚类算法》(http://blog.csdn.net/sandyzhs/article/details/46773731)
-# sklearn.cluster.DBSCAN官方文档(http://scikit-learn.org/stable/modules/generated/sklearn.cluster.DBSCAN.html)
-# 注释中的一些描述，直接从书中或文章中摘取了原句
+# • 《Python编程快速上手——让繁琐工作自动化》,作者Al Sweigart, 译者王海鹏
+# • 《利用Python进行数据分析》,作者Wes McKinney,译者唐学韬
+# • 《用scikit-learn学习DBSCAN聚类》(https://www.cnblogs.com/pinard/p/6217852.html)
+# • 《DBSCAN - 基于密度的聚类算法》(http://blog.csdn.net/sandyzhs/article/details/46773731)
+# • sklearn.cluster.DBSCAN官方文档(http://scikit-learn.org/stable/modules/generated/sklearn.cluster.DBSCAN.html)
+# • 注释中的一些描述，直接从书中或文章中摘取了原句

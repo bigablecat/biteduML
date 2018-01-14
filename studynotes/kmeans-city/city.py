@@ -103,7 +103,7 @@ if __name__ == '__main__':
         print(CityCluster[i])  # 将每个簇的城市输出
 
 # 参考书目：
-# 《Python学习手册》，作者Mark Lutz，译者李军，刘红伟等
-# 《Python编程快速上手——让繁琐工作自动化》,作者Al Sweigart, 译者王海鹏
-# 《利用Python进行数据分析》,作者Wes McKinney,译者唐学韬
-# 注释中的一些描述，直接从书中摘取了原句
+# • 《Python学习手册》，作者Mark Lutz，译者李军，刘红伟等
+# • 《Python编程快速上手——让繁琐工作自动化》,作者Al Sweigart, 译者王海鹏
+# • 《利用Python进行数据分析》,作者Wes McKinney,译者唐学韬
+# • 注释中的一些描述，直接从书中摘取了原句
