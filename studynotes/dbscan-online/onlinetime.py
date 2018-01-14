@@ -114,27 +114,31 @@ db = skc.DBSCAN(eps=0.01, min_samples=20).fit(X)
 # DBSCAN算法是一种基于密度的聚类：
 # • 聚类的时候不需要预先指定簇个数
 # • 最终的簇个数不定
-# DBSCAN算法的目标是寻找被低密度区域分离的高密度区域,
-# 通俗点说就是把扎堆的点(高密度)找出来，而点很少很稀疏的地方(低密度)就作为分割区域。
+
+# DBSCAN算法将数据点分为三类：
+# • 核心点：在半径eps内含有超过min_samples数目的点
+# • 边界点：在半径eps内点的数量小于min_samples，但是落在核心点的邻域内
+# • 噪音点：既不是核心也不是边界点
+
 # sklearn.cluster.DBSCAN函数的完整参数如下
 # class sklearn.cluster.DBSCAN (eps=0.5, min_samples=5, metric='euclidean',
 # metric_params=None, algorithm='auto', leaf_size=30, p=None, n_jobs=1)
-# 这里只介绍前3个参数,其他参数可以查看sklearn.cluster.DBSCAN的官方文档
+# 这里只介绍前3个常用参数,其他参数可以查看sklearn.cluster.DBSCAN的官方文档
 # eps：两个样本被看作近邻的最大距离，超出这个距离不算近邻
 # min_samples：近邻的最少样本数，达到这个数量某个点才能被认为是核心点(包括这个点自身)
 # metric='euclidean': 距离计算方式，DBSCAN使用默认的欧式距离可以满足大部分需求
 
-# eps默认值是0.5, 一般需要通过在多组值里面选择一个合适的阈值
+# eps默认值是0.5
 # eps过大，则更多的点会落在核心点的邻域内
 # 此时类别数可能会减少，本来不应该是一类的样本也会被划为一类
 # 反之eps过小则类别数可能会增大，本来是一类的样本却被划分开
 
-# min_samples默认值是5, 一般需要通过在多组值里面选择一个合适的阈值, 通常和eps一起调参
+# min_samples默认值是5
 # 在eps一定的情况下
 # min_samples过大，则核心点会过少, 此时簇内部分本来是一类的样本可能会被标为噪音点，类别数也会变多
 # 反之min_samples过小，则会产生大量的核心点，可能会导致类别数过少
 
-# 重点调参的就是eps和min_samples，这两个值的组合最终影响了聚类效果
+# eps和min_samples常在一起调参，两个值的组合最终影响了聚类效果
 
 # metric常用的度量参数有:
 # a) 欧式距离 'euclidean'
@@ -145,6 +149,10 @@ db = skc.DBSCAN(eps=0.01, min_samples=20).fit(X)
 # f) 标准化欧式距离'seuclidean', 即对于各特征维度做了归一化以后的欧式距离, 此时各样本特征维度的均值为0，方差为1.
 # g) 马氏距离'mahalanobis'
 
+# skc.DBSCAN(eps=0.01, min_samples=20) 本行代码经过了如下计算流程：
+# 对每个点都计算在半径eps=0.01范围内，邻域有多少个点
+# 如果集合内点的个数超过min_samples=20个时，这个点是核心点
+# 查看剩余点是否在核心点的邻域内，若在则为边界点，否则为噪声点
 
 labels = db.labels_
 # Cluster labels for each point in the dataset given to fit(). Noisy samples are given the label -1.
