@@ -107,9 +107,16 @@ X = real_X[:, 0:1]  # 对多维数组real_X切片,返回一个切片后的多维
 # [:, 0:1]中逗号后的切片0:1表示对real_X中的每个元素按照[0:1]截取
 # 需要注意的是[0:1]操作的对象是real_X[:]结果中的每个元素，而不是real_X[:]结果本身
 
-
 db = skc.DBSCAN(eps=0.01, min_samples=20).fit(X)
-# 先从sklearn.cluster.DBSCAN讲起
+
+# skc.DBSCAN(eps=0.01, min_samples=20) 本行代码经过了如下计算流程：
+# • 以每个点为中心，计算在这个中心的半径eps=0.01范围内，共有多少个点(包括中心点自己),即邻域内总共有多少个点
+# • 如果邻域内点的个数超过min_samples=20，这个点是核心点
+# • 查看剩余点是否在核心点的邻域内，若在则为边界点，否则为噪声点
+# skc.DBSCAN(eps=0.01, min_samples=20)返回的对象类型是 sklearn.cluster.dbscan_.DBSCAN
+# skc.DBSCAN(eps=0.01, min_samples=20)定义了DBSCAN的基本参数后，使用fix()方法,传入数据集,得到最终结果
+# db = skc.DBSCAN(eps=0.01, min_samples=20).fix(X) 返回的对象类型也是 sklearn.cluster.dbscan_.DBSCAN
+
 # DBSCAN(Density-Based Spatial Clustering of Application with Noise)
 # DBSCAN算法是一种基于密度的聚类：
 # • 聚类的时候不需要预先指定簇个数
@@ -150,20 +157,31 @@ db = skc.DBSCAN(eps=0.01, min_samples=20).fit(X)
 # f) 标准化欧式距离'seuclidean', 即对于各特征维度做了归一化以后的欧式距离, 此时各样本特征维度的均值为0，方差为1.
 # g) 马氏距离'mahalanobis'
 
-# skc.DBSCAN(eps=0.01, min_samples=20) 本行代码经过了如下计算流程：
-# • 以每个点为中心，计算在这个中心的半径eps=0.01范围内，共有多少个点(包括中心点自己),即邻域内总共有多少个点
-# • 如果邻域内点的个数超过min_samples=20，这个点是核心点
-# • 查看剩余点是否在核心点的邻域内，若在则为边界点，否则为噪声点
-
 labels = db.labels_
-# Cluster labels for each point in the dataset given to fit(). Noisy samples are given the label -1.
+# labels_是sklearn.cluster.dbscan_.DBSCAN的属性
+# 通过sklearn.cluster.dbscan_.DBSCAN的对象db获取.labels_
+# labels = db.labels_就是skc.DBSCAN(eps=0.01, min_samples=20).fit(X)计算生成的簇的标签,噪声点的标签是-1
+# labels的类型是numpy.ndarray
 
 print('Labels:')
-print(labels)
-raito = len(labels[labels[:] == -1]) / len(labels)
+print(labels)  # 将labels这个ndarray打印出来
+
+raito = len(labels[labels[:] == -1]) / len(labels)  # 获取噪声数据占所有数据的比例
+# labels[:]用切片方式返回一个包含labels所有元素的新ndarray
+# labels[:] == -1 对labels[:]这个ndarray中的所有元素逐个判断是否等于-1, 每次判断都返回一个bool类型的值
+# labels[:] == -1 返回一个由bool值组成的ndarray, 这个ndarray的结构和labels[:]原数组完全一致
+# labels[labels[:] == -1] 从labels中获取所有bool值为True对应的数值(就是-1), 最终结果是一个ndarray
+# 所以labels[labels[:] == -1] 最终返回了一个由数值-1组成的ndarray
+# len(labels[labels[:] == -1]) 获得这个-1组成的ndarray的长度,也就是噪声数据的数目
+# len(labels)是labels总长度,即labels总数
+# raito = len(labels[labels[:] == -1]) / len(labels) 得到噪声点与总数之比
+
 print('Noise raito:', format(raito, '.2%'))
 
+
 n_clusters_ = len(set(labels)) - (1 if -1 in labels else 0)
+# 通过set(labels)对labels去重
+# 1 if -1 in labels else 0 对labels做了遍历，判断labels中是否有-1标签，即噪声点
 
 print('Estimated number of clusters: %d' % n_clusters_)
 print("Silhouette Coefficient: %0.3f" % metrics.silhouette_score(X, labels))
