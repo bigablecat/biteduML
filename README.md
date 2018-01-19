@@ -9,8 +9,8 @@
 #
 共包含15个主题和相关项目
 
-1. k-means聚类 (biteduML\studynotes\kmeans-city已完成)
-2. DBSCAN
+1. [k-means聚类](https://github.com/bigablecat/biteduML/blob/dev/studynotes/kmeans-city/city.py) (路径: biteduML\studynotes\kmeans-city\city.py)
+2. [DBSCAN](https://github.com/bigablecat/biteduML/blob/dev/studynotes/dbscan-online/onlinetime.py)(路径: biteduML\studynotes\dbscan-online\onlinetime.py)
 3. 降维PCA-鸢尾花
 4. kmeans图像分割
 5. knn-nb-决策树模型
