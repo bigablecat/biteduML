@@ -9,9 +9,9 @@
 #
 共包含15个主题和相关项目
 
-1. [k-means聚类](https://github.com/bigablecat/biteduML/blob/dev/studynotes/kmeans-city/city.py) (路径: biteduML/studynotes/kmeans-city/city.py)
-2. [DBSCAN聚类](https://github.com/bigablecat/biteduML/blob/dev/studynotes/dbscan-online/onlinetime.py)(路径: biteduML/studynotes/dbscan-online/onlinetime.py)
-3. [降维PCA-鸢尾花](https://github.com/bigablecat/biteduML/blob/dev/studynotes/PCA-iris/PCA-iris.py)(路径: biteduML/studynotes/PCA-iris/PCA-iris.py)
+1. [k-means聚类](https://github.com/bigablecat/biteduML/blob/master/studynotes/kmeans-city/city.py) (路径: biteduML/studynotes/kmeans-city/city.py)
+2. [DBSCAN聚类](https://github.com/bigablecat/biteduML/blob/master/studynotes/dbscan-online/onlinetime.py)(路径: biteduML/studynotes/dbscan-online/onlinetime.py)
+3. [降维PCA-鸢尾花](https://github.com/bigablecat/biteduML/blob/master/studynotes/PCA-iris/PCA-iris.py)(路径: biteduML/studynotes/PCA-iris/PCA-iris.py)
 4. kmeans图像分割
 5. knn-nb-决策树模型
 6. SVM上证指数预测
