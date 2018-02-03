@@ -10,17 +10,21 @@
 共包含15个主题和相关项目
 
 1. [k-means聚类](https://github.com/bigablecat/biteduML/blob/master/studynotes/kmeans-city/city.py) (路径: biteduML/studynotes/kmeans-city/city.py)
-2. [DBSCAN聚类](https://github.com/bigablecat/biteduML/blob/master/studynotes/dbscan-online/onlinetime.py)(路径: biteduML/studynotes/dbscan-online/onlinetime.py)
-3. [降维PCA-鸢尾花](https://github.com/bigablecat/biteduML/blob/master/studynotes/PCA-iris/PCA-iris.py)(路径: biteduML/studynotes/PCA-iris/PCA-iris.py)
-4. kmeans图像分割
-5. knn-nb-决策树模型
-6. SVM上证指数预测
-7. Linear Regression线性回归:房价与房屋尺寸
-8. Polynomial Regression多项式回归:房价与房屋尺寸
-9. 监督学习-岭回归
-10. 神经网络-手写识别
-11. knn-手写识别
-12. 强化学习
-13. 深度神经网络tensorflow-flappy bird游戏
-14. 期末大作业1: 分类任务
-15. 期末大作业2: 深度神经网络实现俄罗斯方块
+2. [DBSCAN聚类](https://github.com/bigablecat/biteduML/blob/master/studynotes/dbscan-onlinetime/onlinetime.py)(路径: biteduML/studynotes/dbscan-onlinetime/onlinetime.py)
+3. [降维PCA-鸢尾花](https://github.com/bigablecat/biteduML/blob/master/studynotes/pca-iris/pca_iris.py)(路径: biteduML/studynotes/pca-iris/pca-iris.py)
+4. [降维NMF-人脸图像](https://github.com/bigablecat/biteduML/blob/master/studynotes/nmf-face-image/nmf.py)(路径: biteduML/studynotes/nmf-face-image/nmf.py)
+5. [Kmeans图像分割](https://github.com/bigablecat/biteduML/blob/master/studynotes/kmeans-image-segmentation/image_segment.py)(路径: biteduML/studynotes/kmeans-image-segmentation/image-segmentation.py)
+6. [KNN分类器](https://github.com/bigablecat/biteduML/blob/master/studynotes/classifier-knn/knn.py)(路径: biteduML/studynotes/classifier-knn/knn.py)
+7. [决策树分类器](https://github.com/bigablecat/biteduML/blob/master/studynotes/classifier-decision-tree/decision_tree.py)(路径: biteduML/studynotes/classifier-decision-tree/decision_tree.py)
+8. [朴素贝叶斯分类器](https://github.com/bigablecat/biteduML/blob/master/studynotes/classifier-naive-bayes/navie_bayes.py)(路径: biteduML/studynotes/classifier-naive-bayes/navie_bayes.py)
+9. 运动状态实例
+10. SVM上证指数预测
+11. Linear Regression线性回归:房价与房屋尺寸
+12. Polynomial Regression多项式回归:房价与房屋尺寸
+13. 监督学习-岭回归
+14. 神经网络-手写识别
+15. knn-手写识别
+16. 强化学习
+17. 深度神经网络tensorflow-flappy bird游戏
+18. 期末大作业1: 分类任务
+19. 期末大作业2: 深度神经网络实现俄罗斯方块
