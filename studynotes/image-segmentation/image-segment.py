@@ -15,14 +15,14 @@
 # 2. 加载图片进行预处理
 # 3. 加载K-means聚类算法
 # 4. 对像素点进行聚类并输出
-import numpy as np
+import numpy as np  # 导入numpy包
 import PIL.Image as image  # 导入PIL包,用于加载创建图片
 from sklearn.cluster import KMeans  # 加载KMeans算法
 
 
 def loadData(filePath):
     f = open(filePath, 'rb')  # 以二进制的形式打开文件
-    # Python 的 open() 下, ‘r’代表可读, 包括'+'代表可读可写
+    # Python 的 open() 下, 'r'代表可读, 'r+'代表可读可写
     # 'b'代表二进制模式访问
     # 对于所有POSIX兼容的Unix系统(包括Linux)来说,'b'是可由可无的
     # 因为它们把所有的文件当作二进制文件，包括文本文件
@@ -30,19 +30,32 @@ def loadData(filePath):
     img = image.open(f)  # PIL.Image.open()方法以列表形式返回图像像素值
     m, n = img.size  # 获得图片的大小,纵值m,横值n
     for i in range(m):
-        for j in range(n):  # 将每个像素点RGB颜色处理到0-1范围内并放进data
-            x, y, z = img.getpixel((i, j))  # 获取图片的pixel值??为什么是x,y,z??
-            data.append([x / 256.0, y / 256.0, z / 256.0])  # ??为什么/256.0
+        for j in range(n):
+            # 获取图片的pixel值(R,G,B)
+            # x, y, z 分别代表获取到的R, G, B值
+            x, y, z = img.getpixel((i, j))
+            # 将每个像素点RGB颜色处理到0-1范围内并放进data
+            data.append([x / 256.0, y / 256.0, z / 256.0])
+            # x, y, z的每个值都在0~255范围内
+            # x/256.0 >= 0/256, 0/256 = 0, x/256.0 >=0
+            # x/256.0 <= 255/256
+            # 255/256 = (256-1)/256 = 256/256 - 1/256 = 1- 1/256
+            # x/256.0 <= 1- 1/256
     f.close()  # 关闭文件流
     return np.mat(data), m, n  # 分别返回三个数据,data,图片大小的纵值m和横值n
-    # np.mat()方法将数据变为矩阵
+    # numpy.mat()方法将数据变为矩阵, 返回类型为numpy.matrixlib.defmatrix.matrix
 
 
 imgData, row, col = loadData('bull.jpg')  # 调用自定义方法加载图片,获得三个返回值
+
 km = KMeans(n_clusters=4)
 # 加载KMeans算法, n_clusters指定了聚类中心个数为4
 label = km.fit_predict(imgData)  # 聚类获得每个像素所属的类别
-# fit_predict方法作用????
+# fit_predict计算簇中心，同时为簇分配序号
+# fit_predict 实际上调用了KMeans类中的fit方法，并返回label
+# label是聚类后各数据所属标签
+# Compute cluster centers and predict cluster index for each sample
+
 label = label.reshape([row, col])  # reshape方法????
 pic_new = image.new("L", (row, col))  # 创建一张新的灰度图保存聚类后的结果
 for i in range(row):
