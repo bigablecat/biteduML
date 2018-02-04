@@ -6,6 +6,9 @@
 1. raw_materials/  \# 包含本课程的所有原始资料
 2. studynotes/ \# 对所有代码进行了详尽注释(未完待续)
 
+官方配套数据集下载地址:  
+[https://pan.baidu.com/s/1eR7doh8](https://pan.baidu.com/s/1eR7doh8)
+
 #
 共包含15个主题和相关项目
 
