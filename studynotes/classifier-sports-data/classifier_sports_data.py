@@ -1,4 +1,5 @@
-# 需要从特征文件和标签中将所有数据加载到内存中，由于存在缺失值此步骤还需要进行简单的数据预处理
+# 需要从特征文件和标签中将所有数据加载到内存中
+# 由于存在缺失值此步骤还需要进行简单的数据预处理
 # • 创建对应的分类器，并使用训练数据进行训练
 # • 利用测试集预测，通过使用真实值和预测值的比对，计算模型整体的准确率和召回，来评测模型。
 
@@ -56,8 +57,8 @@ if __name__ == '__main__':
     # 下载dataset.zip文件
     # 将dataset.zip文件解压,得到A.zip, B.zip, C.zip, D.zip, E.zip, XYZ.zip共6个压缩文件
     # 解压缩其中的A.zip, B.zip, C.zip, D.zip, E.zip, 得到五个文件夹A, B, C, D, E
-    # 每个文件夹下都有两个与文件夹同名的文件，文件类型分别是FEATURE文件(.feature)和Property List(.label)
     # 将这5个文件夹放到与当前py文件(classifier_sports_data.py)相同的目录下即可
+    # 注：每个文件夹下都有两个与文件夹同名的文件，文件类型分别是FEATURE文件(.feature)和Property List(.label)
 
     featurePaths = ['A/A.feature', 'B/B.feature', 'C/C.feature', 'D/D.feature', 'E/E.feature']
     labelPaths = ['A/A.label', 'B/B.label', 'C/C.label', 'D/D.label', 'E/E.label']
@@ -112,3 +113,5 @@ if __name__ == '__main__':
     # 从准确度的角度衡量，贝叶斯分类器的效果最好
     # 从召回率和f1值的角度衡量，k近邻效果最好
     # 贝叶斯分类器和k近邻的效果好于决策树
+
+    # 注：此程序运行过程大约十几分钟，视机器状况而异
