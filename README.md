@@ -1,5 +1,5 @@
-#### 0. 项目地址:  
-[https://github.com/bigablecat/zTreeFuzzySearch](https://github.com/bigablecat/zTreeFuzzySearch)  
+#### 0. 本项目地址:  
+[https://github.com/bigablecat/biteduML](https://github.com/bigablecat/biteduML)  
 
 #### 1. 官方原始链接：  
 1).  来自中国慕课大学,登录官网查看原始资源：  
